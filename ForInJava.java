@@ -1,4 +1,5 @@
 package projetoLaco;
+
 import java.util.Scanner;
 
 public class Main {
