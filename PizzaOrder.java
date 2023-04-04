@@ -46,18 +46,16 @@ public class Main {
 		}
 		else
 		{
-			System.out.print("Sem cobertura então!\n");
+			System.out.print("\nSem cobertura então!\n");
 		}
-		
-		int coberturanum = ncob;
 		
 		double qtdchope = ch * 2.80;
 		float qtdpizza = pz * 20;
-		double cobertura = coberturanum * 1.50;
+		double cobertura = ncob * 1.50;
 		double total = qtdchope + qtdpizza + cobertura;
 		
 		
-		System.out.println("\n\nSeu pedido foi: "+ ch +" chopes, "+ pz +" pizzas, "+ coberturanum +" Coberturas adicionais.");
+		System.out.println("\n\nSeu pedido foi: "+ ch +" chopes, "+ pz +" pizzas, "+ ncob +" Coberturas adicionais.");
 		System.out.println("\nO valor total do pedido foi: "+ total +" reais");
 		
 		double garcom = total + (total * 0.10);
