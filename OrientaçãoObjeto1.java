@@ -19,7 +19,7 @@ public class Main {
 		
 		nome = scanner.nextLine();
 		
-		System.out.print("informe o CPF do aluno: ");
+		System.out.print("Informe o CPF do aluno: ");
 		
 		CPF = scanner.nextLine();
 		
