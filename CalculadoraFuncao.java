@@ -1,3 +1,5 @@
+package Calculadora;
+
 import java.util.Scanner;
 
 public class Main {
@@ -70,6 +72,17 @@ public class Main {
 		{
 			System.out.println("O resultado não é válido!");
 		}
+		
+		/* ou if (validarResultado(resultado)
+		 * {
+		 * 
+			System.out.println("O resultado é: "+ resultado);
+			}
+			else
+			{
+			System.out.println("O resultado não é válido!");
+			}
+		 */
 	}
 
 	private static float somar(float operando1, float operando2)
