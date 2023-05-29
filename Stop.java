@@ -7,7 +7,7 @@ public class Main
 {
     private static final int EASY_TIME_LIMIT = 30; // facil
     private static final int MEDIUM_TIME_LIMIT = 20; // medio
-    private static final int HARD_TIME_LIMIT = 10; // dificio
+    private static final int HARD_TIME_LIMIT = 10; // dificil
 
     public static void main(String[] args) 
     {
