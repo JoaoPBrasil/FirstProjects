@@ -1,176 +1,77 @@
 import java.util.Random;
-
 import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Main {
+    private static final int EASY_TIME_LIMIT = 30; // facil
+    private static final int MEDIUM_TIME_LIMIT = 20; // medio
+    private static final int HARD_TIME_LIMIT = 10; // dificio
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-			
-			System.out.print("Informe o número de categorias para o stop: ");
-			
-			Scanner scanner = new Scanner(System.in);
-			int numcat = scanner.nextInt();
-			
-			int i = 0;
-			scanner.nextLine();
+    public static void main(String[] args) {
+        System.out.print("Informe o número de categorias para o stop: ");
+        Scanner scanner = new Scanner(System.in);
+        int numcat = scanner.nextInt();
+        scanner.nextLine();
 
-			String[] categorias = new String[numcat]; 
-			
-			for (i = 0; i < numcat; i++)
-			{	
-				System.out.print("Insira o nome da categoria: ");
-				String nomeCategoria = scanner.nextLine();
-				
-				categorias[i] = nomeCategoria;
-			}
-			
-			String letra = null;
-			
-			Random random = new Random();
-			
-			int numero= random.nextInt(26);
+        String[] categorias = new String[numcat];
+        for (int i = 0; i < numcat; i++) {
+            System.out.print("Insira o nome da categoria: ");
+            String nomeCategoria = scanner.nextLine();
+            categorias[i] = nomeCategoria;
+        }
 
-				switch (numero)
-				{
-					case 1: 
-						letra = "A";
-						break;
-						
-					case 2: 
-						letra = "B";
-						break;
-						
-					case 3: 
-						letra = "C";
-						break;
-						
-					case 4: 
-						letra = "D";
-						break;
-						
-					case 5: 
-						letra = "E";
-						break;
-						
-					case 6:
-						letra = "F";
-						break;
-					
-					case 7: 
-						letra = "G";
-						break;
-					
-					case 8:
-						letra = "H";
-						break;
-					
-					case 9:
-						letra = "I";
-						break;
-						
-					case 10: 
-						letra = "J";
-						break;
-					
-					case 11: 
-						letra = "K";
-						break;
-					
-					case 12: 
-						letra = "L";
-						break;
-					
-					case 13:
-						letra = "M";
-						break;
-						
-					case 14: 
-						letra = "N";
-						break;
-						
-					case 15: 
-						letra = "O";
-						break;
-						
-					case 16: 
-						letra = "P";
-						break;
-						
-					case 17: 
-						letra = "Q";
-						break;
-						
-					case 18: 
-						letra = "R";
-						break;
-						
-					case 19: 
-						letra = "S";
-						break;
-					
-					case 20: 
-						letra = "T";
-						break;
-						
-					case 21: 
-						letra = "U";
-						break;
-					
-					case 22: 
-						letra = "V";
-						break;
-					
-					case 23: 
-						letra = "W";
-						break;
-					
-					case 24:
-						letra = "X";
-						break;
-					
-					case 25: 
-						letra = "Y";
-						break;
-					
-					case 26: 
-						letra = "Z";
-						break;
-				}
-				
-				String let = letra;
-				
-				System.out.print("O stop é: "+ let);
-				
-				scanner.nextLine();
+        Random random = new Random();
+        char letra = (char) (random.nextInt(26) + 'A');
+        System.out.println("O stop é: " + letra);
 
-			String[] respostas = new String[numcat];
-			
-			int j = 0;
-			
-			for (j = 0; j < numcat; j++)
-			{
-				System.out.print(categorias[j] + ": ");
-				String resposta = scanner.nextLine();
-				
-				respostas[j] = resposta;
-				
-			}
-			
-			System.out.print("Preencheu todas as categorias e quer dar stop? 1- Sim\n 2- Não\n");
-			
-			Scanner scanner1 = new Scanner(System.in);
-			int x = scanner.nextInt();
-			
-			if (x == 1)
-			{
-				System.out.print("Stop!");
-			}
-			else
-			{
-				System.out.print("Perdeu!");
-			}
+        String[] respostas = new String[numcat];
+        Timer timer = new Timer();
+        TimerTask task = new TimerTask() {
+            int timeLimit = getTimeLimit(numcat);
 
-	}
+            @Override
+            public void run() {
+                if (timeLimit > 0) {
+                    System.out.println("Tempo restante: " + timeLimit + " segundos");
+                    timeLimit--;
+                } else {
+                    System.out.println("Tempo esgotado!");
+                    timer.cancel();
+                    scanner.close();
+                    System.exit(0);
+                }
+            }
+        };
+        timer.scheduleAtFixedRate(task, 1000, 1000);
 
+        for (int j = 0; j < numcat; j++) {
+            System.out.print(categorias[j] + ": ");
+            String resposta = scanner.nextLine();
+            respostas[j] = resposta;
+        }
+
+        timer.cancel();
+        scanner.close();
+        System.out.print("Preencheu todas as categorias e quer dar stop? 1- Sim\n 2- Não\n");
+        int x = scanner.nextInt();
+
+        if (x == 1) {
+            System.out.print("Stop!");
+        } else {
+            System.out.print("Perdeu!");
+        }
+    }
+
+    private static int getTimeLimit(int numcat) {
+        int timeLimit;
+        if (numcat <= 3) {
+            timeLimit = EASY_TIME_LIMIT;
+        } else if (numcat <= 6) {
+            timeLimit = MEDIUM_TIME_LIMIT;
+        } else {
+            timeLimit = HARD_TIME_LIMIT;
+        }
+        return timeLimit;
+    }
 }
