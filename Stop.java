@@ -30,16 +30,19 @@ public class Main
 
         String[] respostas = new String[numcat];
         Timer timer = new Timer();
-        TimerTask task = new TimerTask() {
+        TimerTask task = new TimerTask() 
+        {
             int timeLimit = getTimeLimit(numcat);
 
             @Override
-            public void run() {
+            public void run() 
+            {
                 if (timeLimit > 0) 
                 {
                     System.out.println("Tempo restante: " + timeLimit + " segundos");
                     timeLimit--;
-                } else 
+                } 
+                else 
                 {
                     System.out.println("Tempo esgotado!");
                     timer.cancel();
@@ -65,7 +68,9 @@ public class Main
         if (x == 1) 
         {
             System.out.print("Stop!");
-        } else {
+        } 
+        else 
+        {
             System.out.print("Perdeu!");
         }
     }
@@ -76,10 +81,12 @@ public class Main
         if (numcat <= 3) 
         {
             timeLimit = EASY_TIME_LIMIT;
-        } else if (numcat <= 6) 
+        } 
+        else if (numcat <= 6) 
         {
             timeLimit = MEDIUM_TIME_LIMIT;
-        } else 
+        }
+        else 
         {
             timeLimit = HARD_TIME_LIMIT;
         }
